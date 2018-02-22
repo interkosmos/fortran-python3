@@ -1,4 +1,9 @@
 ! python.f90
+!
+! Interface to Python 3 for Fortran 2003/2008.
+!
+! Author:  Philipp Engel
+! Licence: ISC
 module python
     implicit none
 

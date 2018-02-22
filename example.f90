@@ -1,3 +1,9 @@
+! example.f90
+!
+! Example that shows how to run Python code from Fortran.
+!
+! Author:  Philipp Engel
+! Licence: ISC
 program main
     use :: python
     implicit none
