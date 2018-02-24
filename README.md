@@ -1,7 +1,6 @@
 # f03python
-A simple Python interface to run
-[very high level embedded](https://docs.python.org/3.6/extending/embedding.html)
-Python code from Fortran 2003/2008 using `iso_c_binding`.
+A simple interface for [embedding Python 3 code](https://docs.python.org/3.6/extending/embedding.html)
+in Fortran 2003/2008, using `iso_c_binding`.
 
 ## Build
 Use the Makefile to build the interface:
@@ -18,10 +17,11 @@ Build the example with:
 ```
 $ make example
 ```
-Run:
+You may have to modify the Makefile depending on your Python version.
+Run the example:
 ```
 $ ./example
-Hello, World!
+ Konnichiwa!
 ```
 
 ## Licence

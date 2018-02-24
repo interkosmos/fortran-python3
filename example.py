@@ -1,0 +1,2 @@
+def konnichiwa():
+    return 'Konnichiwa!'
