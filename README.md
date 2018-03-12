@@ -1,6 +1,7 @@
 # f03python
 A simple interface for [embedding Python 3 code](https://docs.python.org/3.6/extending/embedding.html)
-in Fortran 2003/2008, using `iso_c_binding`.
+in Fortran 2003/2008, using `iso_c_binding`. Currently, this library is just a
+proof of concept.
 
 ## Build
 Use the Makefile to build the interface:
@@ -11,17 +12,21 @@ Or run your favourite Fortran compiler directly:
 ```
 $ gfortran8 -c python.f90
 ```
+You may have to modify the name of the Python binary, for instance:
+```
+$ make all PYTHON=python3
+```
 
-## Example
-Build the example with:
+## Examples
+Please check the directory `examples` for some demos:
+
+* **simple** just calls the Python interpreter. Not very useful.
+* **string** calls a function inside a Python module and prints the returned
+  string to stdout.
+
+Compile the examples with:
 ```
-$ make example
-```
-You may have to modify the Makefile depending on your Python version.
-Run the example:
-```
-$ ./example
- Konnichiwa!
+$ make <name>
 ```
 
 ## Licence

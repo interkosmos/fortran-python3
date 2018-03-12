@@ -1,21 +1,28 @@
 FC      = gfortran8
-CFLAGS  = -fcheck=all -ffast-math -funroll-loops -Ofast -march=native -Wl,-rpath=/usr/local/lib/gcc8/
-LDFLAGS = -I/usr/local/include/ `python3.6-config --ldflags`
+PYTHON  = python3.6
+CFLAGS  = -fcheck=all -Ofast -march=native -Wl,-rpath=/usr/local/lib/gcc8/
+LDFLAGS = -I/usr/local/include/ `$(PYTHON)-config --ldflags`
 SRC     = python.f90
 OBJ     = python.o
-EXAMPLE = example
 
-all: $(OBJ) $(EXAMPLE)
+DIR     = examples
+SIMPLE  = simple
+STRING  = string
+
+all: $(OBJ) $(SIMPLE) $(STRING)
 
 python: $(OBJ)
 
 $(OBJ):
 	$(FC) -c $(SRC)
 
-$(EXAMPLE): $*.f90 $(OBJ)
+$(STRING): $(DIR)/$*.f90 $(OBJ)
+	$(FC) $(CFLAGS) -o $@ $? $(LDFLAGS)
+
+$(SIMPLE): $(DIR)/$*.f90 $(OBJ)
 	$(FC) $(CFLAGS) -o $@ $? $(LDFLAGS)
 
 .PHONY: clean
 
 clean:
-	rm *.mod $(OBJ) $(EXAMPLE)
+	rm *.mod $(OBJ) $(SIMPLE) $(STRING)
