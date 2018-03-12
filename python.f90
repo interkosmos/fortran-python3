@@ -8,7 +8,7 @@ module python
     implicit none
 
     interface
-        ! char *PyBytes_AsString(PyObject *o)¶
+        ! char *PyBytes_AsString(PyObject *o)
         function py_bytes_as_string(o) bind(c, name='PyBytes_AsString')
             use, intrinsic :: iso_c_binding
             implicit none
