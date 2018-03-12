@@ -1,8 +1,7 @@
-! example.f90
+! string.f90
 !
 ! This example calls the Python function `konnichiwa()` in
-! `example.py` from Fortran and prints the returned string
-! to stdout.
+! `examples/example.py` from Fortran and prints the returned string to stdout.
 !
 ! Author:  Philipp Engel
 ! Licence: ISC
@@ -26,9 +25,9 @@ program main
     call py_set_program_name('python' // c_null_char)
     call py_initialize()
 
-    ! Add current working directory to system path.
+    ! Add the `examples` directory to Python's system path.
     rc = py_run_simple_string('import sys' // c_null_char)
-    rc = py_run_simple_string('sys.path.append("./")' // c_null_char)
+    rc = py_run_simple_string('sys.path.append("./examples")' // c_null_char)
 
     ! Open the Python module.
     name_ptr   = py_unicode_from_string(module_name // c_null_char)
@@ -48,7 +47,7 @@ program main
                 string_len = py_bytes_size(obj_ptr)                         ! Get string length.
 
                 call c_f_pointer(string_ptr, string, [ string_len ])        ! Create an array of string pointers.
-                write(*, *) string
+                print *, string                                             ! Print the string.
 
                 call py_dec_ref(obj_ptr)
                 call py_dec_ref(value_ptr)
