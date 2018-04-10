@@ -1,7 +1,7 @@
 FC      = gfortran8
 PYTHON  = python3.6
-CFLAGS  = -fcheck=all -Ofast -march=native -Wl,-rpath=/usr/local/lib/gcc8/
-LDFLAGS = -I/usr/local/include/ `$(PYTHON)-config --ldflags`
+CFLAGS  = -fcheck=all -Ofast -march=native -Wl,-rpath=/usr/local/lib/gcc8/ -I/usr/local/include/
+LDFLAGS = `$(PYTHON)-config --ldflags`
 SRC     = python.f90
 OBJ     = python.o
 
