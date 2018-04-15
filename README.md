@@ -4,7 +4,7 @@ in Fortran 2003/2008, using `iso_c_binding`. Currently, this library is just a
 proof of concept.
 
 ## Build
-Use the Makefile to build the interface:
+Use BSD make to build the interface:
 ```
 $ make python
 ```
