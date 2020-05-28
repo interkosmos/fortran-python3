@@ -13,13 +13,13 @@ $ make
 Or run your favourite Fortran compiler directly:
 
 ```
-$ gfortran-c src/python3.f90
+$ gfortran -c src/python3.f90
 ```
 
 You may have to modify the name of the Python binary, for instance:
 
 ```
-$ make all PYTHON=python3.9
+$ make all PYTHON=python3.7
 ```
 
 ## Examples
