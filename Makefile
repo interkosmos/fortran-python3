@@ -1,28 +1,33 @@
-FC      = gfortran8
-PYTHON  = python3.6
-CFLAGS  = -fcheck=all -Ofast -march=native -Wl,-rpath=/usr/local/lib/gcc8/ -I/usr/local/include/
-LDFLAGS = `$(PYTHON)-config --ldflags`
-SRC     = python.f90
-OBJ     = python.o
+.POSIX:
+.SUFFIXES:
+
+FC      = gfortran
+PYTHON  = python3
+FFLAGS  = -Wall -fmax-errors=1 -fcheck=all -std=f2003
+LDLIBS  = `$(PYTHON)-config --ldflags`
+
+SRC     = src/python3.f90
+TARGET  = python3.o
 
 DIR     = examples
 SIMPLE  = simple
 STRING  = string
 
-all: $(OBJ) $(SIMPLE) $(STRING)
+.PHONY: all clean $(TARGET) $(SIMPLE) $(STRING)
 
-python: $(OBJ)
+all: $(TARGET) $(SIMPLE) $(STRING)
 
-$(OBJ):
-	$(FC) -c $(SRC)
+$(TARGET):
+	$(FC) $(FFLAGS) -c $(SRC)
 
-$(STRING): $(DIR)/$*.f90 $(OBJ)
-	$(FC) $(CFLAGS) -o $@ $? $(LDFLAGS)
+$(STRING): $(DIR)/$(STRING)/$*.f90 $(TARGET)
+	$(FC) $(FFLAGS) -o $(DIR)/$(STRING)/$@ $? $(LDLIBS)
 
-$(SIMPLE): $(DIR)/$*.f90 $(OBJ)
-	$(FC) $(CFLAGS) -o $@ $? $(LDFLAGS)
-
-.PHONY: clean
+$(SIMPLE): $(DIR)/$(SIMPLE)/$*.f90 $(TARGET)
+	$(FC) $(FFLAGS) -o $(DIR)/$(SIMPLE)/$@ $? $(LDLIBS)
 
 clean:
-	rm *.mod $(OBJ) $(SIMPLE) $(STRING)
+	rm *.mod
+	rm $(TARGET)
+	rm $(DIR)/$(SIMPLE)/$(SIMPLE)
+	rm $(DIR)/$(STRING)/$(STRING)

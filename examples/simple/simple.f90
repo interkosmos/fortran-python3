@@ -6,7 +6,7 @@
 ! Licence: ISC
 program main
     use, intrinsic :: iso_c_binding
-    use :: python
+    use :: python3
     implicit none
     integer :: rc
 
@@ -15,7 +15,7 @@ program main
     call py_initialize()
 
     ! Call the Python interpreter.
-    rc = py_run_simple_string('print("Hello, World!")' // c_null_char)
+    rc = py_run_simple_string('print("Hello, from Python 3!")' // c_null_char)
 
     call py_finalize()
 end program main
