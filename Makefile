@@ -20,10 +20,10 @@ all: $(TARGET) $(SIMPLE) $(STRING)
 $(TARGET):
 	$(FC) $(FFLAGS) -c $(SRC)
 
-$(STRING): $(DIR)/$(STRING)/$*.f90 $(TARGET)
+$(STRING): $(DIR)/$(STRING)/$(STRING).f90 $(TARGET)
 	$(FC) $(FFLAGS) -o $(DIR)/$(STRING)/$@ $? $(LDLIBS)
 
-$(SIMPLE): $(DIR)/$(SIMPLE)/$*.f90 $(TARGET)
+$(SIMPLE): $(DIR)/$(SIMPLE)/$(SIMPLE).f90 $(TARGET)
 	$(FC) $(FFLAGS) -o $(DIR)/$(SIMPLE)/$@ $? $(LDLIBS)
 
 clean:
